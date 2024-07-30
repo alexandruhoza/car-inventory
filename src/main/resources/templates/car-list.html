@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Car Search</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Car Search</h1>
+
+<!-- Search Form -->
+<form th:action="@{/cars/search}" method="get">
+    <label for="length">Length:</label>
+    <input type="number" id="length" name="length" step="0.01" th:value="${carSearchDTO.length}" />
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" name="weight" step="0.01" th:value="${carSearchDTO.weight}" />
+    <label for="velocity">Velocity:</label>
+    <input type="number" id="velocity" name="velocity" step="0.01" th:value="${carSearchDTO.velocity}" />
+    <label for="color">Color:</label>
+    <input type="text" id="color" name="color" th:value="${carSearchDTO.color}" />
+    <button type="submit">Search</button>
+</form>
+
+<!-- Results Table -->
+<div th:if="${cars != null}">
+    <table>
+        <thead>
+        <tr>
+            <th>Length</th>
+            <th>Weight</th>
+            <th>Velocity</th>
+            <th>Color</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.length}"></td>
+            <td th:text="${car.weight}"></td>
+            <td th:text="${car.velocity}"></td>
+            <td th:text="${car.color}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Export to XML -->
+    <form th:action="@{/cars/download}" method="post">
+        <input type="hidden" name="color" th:value="${carSearchDTO.color}">
+        <input type="hidden" name="length" th:value="${carSearchDTO.length}">
+        <input type="hidden" name="weight" th:value="${carSearchDTO.weight}">
+        <input type="hidden" name="velocity" th:value="${carSearchDTO.velocity}">
+        <button type="submit">Export to XML</button>
+    </form>
+</div>
+<div th:if="${cars == null}">
+    <p>No cars found.</p>
+</div>
+
+<!-- Add Car Form -->
+<h2>Add a New Car</h2>
+<form th:action="@{/cars}" method="post" th:object="${car}">
+    <label for="length">Length:</label>
+    <input type="number" id="length" name="length" required  step="0.01" th:value="${car != null ? car.length : ''}" />
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" name="weight" required  step="0.01" th:value="${car != null ? car.weight : ''}" />
+    <label for="velocity">Velocity:</label>
+    <input type="number" id="velocity" name="velocity" required  step="0.01" th:value="${car != null ? car.velocity : ''}" />
+    <label for="color">Color:</label>
+    <input type="text" id="color" name="color" required  th:value="${car != null ? car.color : ''}" />
+    <button type="submit">Add Car</button>
+</form>
+</body>
+</html>

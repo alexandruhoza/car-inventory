@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: you
+      changes:
+        - createTable:
+            tableName: car
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: length
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weight
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: velocity
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: color
+                  type: varchar(50)
+                  constraints:
+                    nullable: false

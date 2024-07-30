@@ -1,0 +1,9 @@
+FROM openjdk:21-slim
+COPY target/*.jar app.jar
+
+ARG SPRING_PROFILES_ACTIVE
+ENV SPRING_PROFILES_ACTIVE ${SPRING_PROFILES_ACTIVE}
+EXPOSE 8080
+
+RUN echo $SPRING_PROFILES_ACTIVE
+ENTRYPOINT ["java", "-jar", "app.jar", "-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}"]
