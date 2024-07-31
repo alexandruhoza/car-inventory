@@ -1,8 +1,9 @@
-package com.example.carinventory.service;
+package com.example.carinventory.service.impl;
 
 import com.example.carinventory.dto.CarDto;
 import com.example.carinventory.model.Car;
 import com.example.carinventory.repository.CarRepository;
+import com.example.carinventory.service.CarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

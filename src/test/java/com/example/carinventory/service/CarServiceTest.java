@@ -3,6 +3,7 @@ package com.example.carinventory.service;
 import com.example.carinventory.dto.CarDto;
 import com.example.carinventory.model.Car;
 import com.example.carinventory.repository.CarRepository;
+import com.example.carinventory.service.impl.CarServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -44,7 +45,7 @@ public class CarServiceTest {
 
     @Test
     void testFindCarsByCriteria_LengthAndColor() {
-        List<Car> expectedCars = Arrays.asList(
+        List<Car> expectedCars = List.of(
                 new Car(1L, 4.5, 1500.0, 180.0, "Red")
         );
 
@@ -57,7 +58,7 @@ public class CarServiceTest {
 
     @Test
     void testFindCarsByCriteria_AllFields() {
-        List<Car> expectedCars = Arrays.asList(
+        List<Car> expectedCars = List.of(
                 new Car(5L, 4.5, 1500.0, 180.0, "Green")
         );
 
@@ -70,7 +71,7 @@ public class CarServiceTest {
 
     @Test
     void testFindCarsByCriteria_NoMatch() {
-        when(carRepository.findByCriteria(anyDouble(), anyDouble(), anyDouble(), anyString())).thenReturn(Arrays.asList());
+        when(carRepository.findByCriteria(anyDouble(), anyDouble(), anyDouble(), anyString())).thenReturn(List.of());
 
         List<CarDto> cars = carService.searchCars(new CarDto(null, 4.5, 1500.0, 200.0, "Yellow"));
         assertEquals(0, cars.size());
