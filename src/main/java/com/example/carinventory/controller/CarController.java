@@ -66,10 +66,10 @@ public class CarController {
     }
 
     @Operation(summary = "Create a new car", description = "Creates a new car with the specified details.")
-    @PostMapping
-    public String createCar(@ModelAttribute("car") CarDto car, Model model) {
+    @PostMapping("/create")
+    public String createCar(@ModelAttribute("car") CarDto car) {
         carService.createCar(car);
-        return "redirect:cars/search";
+        return "redirect:search";
     }
 }
 
