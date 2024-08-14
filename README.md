@@ -7,6 +7,9 @@ This application is a web-based inventory system for managing car data. It allow
 - **Add Car**: Add new cars to the inventory.
 - **Search Cars**: Search for cars using various criteria such as length, weight, velocity, and color.
 - **Download Car List**: Download the search results in XML format.
+- **User Authentication and Authorization**: Ensures secure access to features based on user roles.
+     * Authentication: - Users can log in through the /login endpoint. Registration is handled through a registration page (accessible via a register link on the login page).
+     * Authorization: - Users are assigned roles (ROLE_ADMIN, ROLE_USER, ROLE_TEST) based on their permissions. Access to certain features is restricted based on these roles.
 - **API Documentation**: Swagger UI for interactive API documentation and testing.
 
 ## Technologies
@@ -31,7 +34,7 @@ This application is a web-based inventory system for managing car data. It allow
 - [ ] Docker Setup: Ensure Docker and Docker Compose are installed on your machine.
 - [ ] Docker Compose Configuration: Make sure the docker-compose.yml file is configured to start the PostgreSQL database
 - [ ] Build and Start Containers: docker-compose up --build
-- [ ] Accessing the Application: The web application will be accessible at http://localhost:8080/cars/search.
+- [ ] Accessing the Application: The web application will be accessible at http://localhost:8080.
      Swagger UI for API documentation will be available at http://localhost:8080/swagger-ui.html.
 
 ## Testing
