@@ -55,4 +55,9 @@ public class AuthController {
         }
         return "redirect:/login?logout=true";
     }
+
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "403";
+    }
 }

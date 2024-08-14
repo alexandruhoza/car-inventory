@@ -134,13 +134,13 @@ public class CarControllerTest {
         carDto.setWeight(1500.0);
         carDto.setVelocity(200.0);
 
-        mockMvc.perform(post("/cars")
+        mockMvc.perform(post("/cars/create")
                         .param("color", "Red")
                         .param("length", "4.5")
                         .param("weight", "1500")
                         .param("velocity", "200"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("cars/search"));
+                .andExpect(redirectedUrl("search"));
         verify(carService).createCar(carDto);
     }
 }

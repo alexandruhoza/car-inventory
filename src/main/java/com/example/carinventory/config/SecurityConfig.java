@@ -19,7 +19,8 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/register", "/resources/**", "/css/**", "/js/**").permitAll()
                         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/cars/**").authenticated()
+                        .requestMatchers("/cars/search").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/cars/create").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -32,6 +33,9 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true")
                         .permitAll()
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/403")
                 );
         return http.build();
     }

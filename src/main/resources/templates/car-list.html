@@ -74,7 +74,7 @@
 
 <!-- Add Car Form -->
 <h2>Add a New Car</h2>
-<form th:action="@{/cars}" method="post" th:object="${car}">
+<form th:action="@{/cars/create}" method="post" th:object="${car}">
     <label for="length">Length:</label>
     <input type="number" id="length" name="length" required  step="0.01" th:value="${car != null ? car.length : ''}" />
     <label for="weight">Weight:</label>
