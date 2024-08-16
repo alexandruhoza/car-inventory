@@ -84,6 +84,9 @@
     <label for="color">Color:</label>
     <input type="text" id="color" name="color" required  th:value="${car != null ? car.color : ''}" />
     <button type="submit">Add Car</button>
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <p th:text="${errorMessage}"></p>
+    </div>
 </form>
 </body>
 </html>
